@@ -75,7 +75,9 @@ python -m schwarzman_network.cli trial-linkedin-matching
 The workflow in `.github/workflows/yearly-refresh.yml` runs once per year on
 January 15 and can also be triggered manually. Manual runs can set
 `brightdata_refresh=true` to refetch all valid LinkedIn profiles instead of only
-profiles not already present in the Bright Data audit cache.
+profiles not already present in the Bright Data audit cache. They can also set
+`brightdata_batch_size` to control how many LinkedIn profiles are sent in each
+Bright Data scrape request.
 
 Required secret for Bright Data enrichment:
 

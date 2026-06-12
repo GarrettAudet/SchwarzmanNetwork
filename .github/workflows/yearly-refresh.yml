@@ -7,6 +7,10 @@ on:
         description: "Optional cap on Bright Data profiles. 0 means all pending LinkedIn URLs."
         required: false
         default: "0"
+      brightdata_batch_size:
+        description: "Bright Data profile batch size for each scrape request."
+        required: false
+        default: "100"
       brightdata_refresh:
         description: "Set to true to refetch all valid LinkedIn profiles, not just pending profiles."
         required: false
@@ -51,10 +55,11 @@ jobs:
           BRIGHT_DATA_API_KEY: ${{ secrets.BRIGHT_DATA_API_KEY }}
           BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
           BRIGHTDATA_LIMIT: ${{ github.event.inputs.brightdata_limit || '0' }}
+          BRIGHTDATA_BATCH_SIZE: ${{ github.event.inputs.brightdata_batch_size || '100' }}
           BRIGHTDATA_REFRESH: ${{ github.event.inputs.brightdata_refresh || 'false' }}
         run: |
           if [ -n "$BRIGHT_DATA_API$BRIGHT_DATA_API_KEY$BRIGHTDATA_API_KEY" ]; then
-            args=(--limit "$BRIGHTDATA_LIMIT")
+            args=(--limit "$BRIGHTDATA_LIMIT" --batch-size "$BRIGHTDATA_BATCH_SIZE")
             if [ "$BRIGHTDATA_REFRESH" = "true" ]; then
               args+=(--refresh)
             fi

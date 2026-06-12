@@ -306,6 +306,8 @@ def enrich_brightdata(
     refresh: bool = False,
 ) -> dict[str, object]:
     ensure_data_dirs()
+    if batch_size <= 0:
+        raise ValueError("batch_size must be greater than 0")
     linkedin_rows = _read_csv(seed_dir / "linkedin_profiles.csv")
     raw_path = INTERIM_DIR / "brightdata_linkedin_profiles.jsonl"
     normalized_path = AUDIT_DIR / "brightdata_profile_decisions.csv"
@@ -326,12 +328,20 @@ def enrich_brightdata(
     ]
     if limit > 0:
         candidates = candidates[:limit]
+    total_batches = (len(candidates) + batch_size - 1) // batch_size if candidates else 0
+    print(
+        f"Bright Data enrichment: {len(candidates)} profiles pending, "
+        f"batch_size={batch_size}, refresh={refresh}",
+        flush=True,
+    )
     client = BrightDataLinkedInClient()
     fetched: list[dict[str, object]] = []
     fetched_count = 0
     for offset in range(0, len(candidates), batch_size):
         batch = candidates[offset : offset + batch_size]
         urls = [row["linkedin_url"] for row in batch]
+        batch_number = (offset // batch_size) + 1
+        print(f"Bright Data batch {batch_number}/{total_batches}: requesting {len(urls)} profiles", flush=True)
         payload = client.scrape_profiles(urls)
         if isinstance(payload, list):
             records = payload
@@ -347,10 +357,12 @@ def enrich_brightdata(
             records = []
         if isinstance(records, dict):
             records = [records]
+        batch_fetched = 0
         for index, record in enumerate(records):
             if isinstance(record, dict):
                 input_url = _record_input_url(record, urls[index] if index < len(urls) else "")
                 fetched.append({"input_url": input_url, "fetched_at": utc_now_iso(), "record": record})
+                batch_fetched += 1
         if fetched:
             fetched_count += len(fetched)
             with raw_path.open("a", encoding="utf-8") as handle:
@@ -360,6 +372,11 @@ def enrich_brightdata(
                 if item.get("input_url"):
                     existing_by_url[str(item["input_url"])] = item
             fetched = []
+        print(
+            f"Bright Data batch {batch_number}/{total_batches}: received {batch_fetched} records, "
+            f"total_fetched={fetched_count}",
+            flush=True,
+        )
 
     appended_records = [item for item in existing_by_url.values() if "record" in item]
     if appended_records:

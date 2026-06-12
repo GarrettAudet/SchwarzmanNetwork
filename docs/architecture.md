@@ -124,7 +124,9 @@ python -m schwarzman_network.cli refresh
 ```
 
 The Bright Data command reads `BRIGHT_DATA_API`, `BRIGHT_DATA_API_KEY`, or
-`BRIGHTDATA_API_KEY` from the environment or `.env`.
+`BRIGHTDATA_API_KEY` from the environment or `.env`. The GitHub Actions workflow
+also exposes `brightdata_batch_size` for full refreshes so large runs can use
+larger Bright Data scrape batches while still logging batch progress.
 
 Bright Data profile `city`/`location` is treated as profile location. Job
 location is derived only from current-role evidence in `experience[].location`,
