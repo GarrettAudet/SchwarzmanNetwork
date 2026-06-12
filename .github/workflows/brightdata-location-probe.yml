@@ -117,7 +117,20 @@ jobs:
                   else:
                       return {"variant": name, "error": "snapshot_timeout", "snapshot_id": snapshot_id}
 
-              records = result if isinstance(result, list) else result.get("data") if isinstance(result, dict) else []
+              if isinstance(result, list):
+                  records = result
+              elif isinstance(result, dict) and isinstance(result.get("data"), list):
+                  records = result["data"]
+              elif isinstance(result, dict) and isinstance(result.get("result"), list):
+                  records = result["result"]
+              elif isinstance(result, dict) and isinstance(result.get("result"), dict):
+                  records = [result["result"]]
+              elif isinstance(result, dict) and result.get("snapshot_id"):
+                  records = []
+              elif isinstance(result, dict):
+                  records = [result]
+              else:
+                  records = []
               if isinstance(records, dict):
                   records = [records]
               records = [record for record in (records or []) if isinstance(record, dict)]
