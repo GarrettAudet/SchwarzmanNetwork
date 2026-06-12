@@ -1,0 +1,144 @@
+name: Bright Data Location Probe
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile_url:
+        description: "LinkedIn profile URL to probe."
+        required: true
+        default: "https://www.linkedin.com/in/arjun-akwei"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Probe Bright Data profile location fields
+        env:
+          BRIGHTDATA_API_KEY: ${{ secrets.BRIGHTDATA_API_KEY }}
+          PROFILE_URL: ${{ inputs.profile_url }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import time
+          from urllib.error import HTTPError
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
+
+          api_key = os.environ.get("BRIGHTDATA_API_KEY", "")
+          profile_url = os.environ["PROFILE_URL"]
+          dataset_id = "gd_l1viktl72bvl7bjuj0"
+
+          if not api_key:
+              raise SystemExit("BRIGHTDATA_API_KEY is not configured.")
+
+          def read_json(request: Request, timeout: int = 180) -> object:
+              try:
+                  with urlopen(request, timeout=timeout) as response:
+                      text = response.read().decode("utf-8", errors="replace")
+              except HTTPError as error:
+                  body = error.read().decode("utf-8", errors="replace")
+                  raise RuntimeError(f"HTTP {error.code} from Bright Data: {body[:500]}") from error
+              if not text.strip():
+                  return {}
+              try:
+                  return json.loads(text)
+              except json.JSONDecodeError:
+                  return [json.loads(line) for line in text.splitlines() if line.strip()]
+
+          def get_json(url: str, timeout: int = 180) -> object:
+              request = Request(url, headers={"Authorization": f"Bearer {api_key}", "Accept": "application/json"})
+              return read_json(request, timeout=timeout)
+
+          def summarize_experience_item(item: object) -> dict[str, object]:
+              if not isinstance(item, dict):
+                  return {}
+              keys = ["title", "company", "company_id", "location", "start_date", "end_date", "duration", "subtitle"]
+              out = {key: item.get(key) for key in keys if item.get(key) not in (None, "", [], {})}
+              positions = item.get("positions")
+              if isinstance(positions, list):
+                  out["positions_count"] = len(positions)
+                  out["positions_preview"] = [summarize_experience_item(position) for position in positions[:2]]
+              return out
+
+          def summarize(name: str, record: dict[str, object]) -> dict[str, object]:
+              experience = record.get("experience")
+              experience_items = experience if isinstance(experience, list) else []
+              current_like = []
+              for item in experience_items:
+                  if not isinstance(item, dict):
+                      continue
+                  end_text = str(item.get("end_date") or item.get("duration") or "").lower()
+                  if "present" in end_text or not item.get("end_date"):
+                      current_like.append(item)
+              current_company = record.get("current_company") if isinstance(record.get("current_company"), dict) else {}
+              return {
+                  "variant": name,
+                  "top_level_keys": sorted([key for key, value in record.items() if value not in (None, "", [], {})]),
+                  "profile_city": record.get("city"),
+                  "profile_location": record.get("location"),
+                  "position": record.get("position"),
+                  "current_company_name": record.get("current_company_name") or current_company.get("name"),
+                  "current_company_title": current_company.get("title"),
+                  "current_company_location": current_company.get("location"),
+                  "experience_count": len(experience_items),
+                  "experience_location_count": sum(1 for item in experience_items if isinstance(item, dict) and item.get("location")),
+                  "current_like_experience": [summarize_experience_item(item) for item in current_like[:3]],
+                  "experience_preview": [summarize_experience_item(item) for item in experience_items[:3]],
+              }
+
+          def scrape(name: str, custom_fields: str | None) -> dict[str, object]:
+              params = {"dataset_id": dataset_id, "notify": "false", "include_errors": "true"}
+              if custom_fields is not None:
+                  params["custom_output_fields"] = custom_fields
+              endpoint = f"https://api.brightdata.com/datasets/v3/scrape?{urlencode(params)}"
+              payload = json.dumps({"input": [{"url": profile_url}]}).encode("utf-8")
+              request = Request(
+                  endpoint,
+                  data=payload,
+                  headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json", "Accept": "application/json"},
+                  method="POST",
+              )
+              result = read_json(request, timeout=180)
+              if isinstance(result, dict) and result.get("snapshot_id"):
+                  snapshot_id = result["snapshot_id"]
+                  for _ in range(120):
+                      time.sleep(5)
+                      progress = get_json(f"https://api.brightdata.com/datasets/v3/progress/{snapshot_id}", timeout=60)
+                      if isinstance(progress, dict) and progress.get("status") == "ready":
+                          result = get_json(f"https://api.brightdata.com/datasets/v3/snapshot/{snapshot_id}?format=json", timeout=180)
+                          break
+                      if isinstance(progress, dict) and progress.get("status") == "failed":
+                          return {"variant": name, "error": "snapshot_failed", "progress": progress}
+                  else:
+                      return {"variant": name, "error": "snapshot_timeout", "snapshot_id": snapshot_id}
+
+              records = result if isinstance(result, list) else result.get("data") if isinstance(result, dict) else []
+              if isinstance(records, dict):
+                  records = [records]
+              records = [record for record in (records or []) if isinstance(record, dict)]
+              if not records:
+                  return {"variant": name, "error": "no_records"}
+              return summarize(name, records[0])
+
+          variants = [
+              ("current_custom_fields", "position,education,current_company_name,city,experience,current_company_company_id,location"),
+              ("full_no_custom_fields", None),
+              (
+                  "richer_custom_fields",
+                  "input,input_url,url,name,city,location,country_code,current_company,current_company_name,current_company_company_id,position,experience,education,educations_details,about,activity,honors_and_awards",
+              ),
+          ]
+          results = [scrape(name, fields) for name, fields in variants]
+          rendered = json.dumps({"profile_url": profile_url, "results": results}, ensure_ascii=False, indent=2)
+          print(rendered)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as handle:
+              handle.write("## Bright Data Location Probe\n\n")
+              handle.write("```json\n")
+              handle.write(rendered)
+              handle.write("\n```\n")
+          PY
