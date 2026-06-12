@@ -89,7 +89,9 @@ Optional email notification secrets:
 - `UPDATE_EMAIL_FROM` optional; defaults to `SMTP_USERNAME`
 
 The email step sends a notice only when the yearly run actually commits updated
-data.
+data. If SMTP secrets are not configured, the workflow creates a GitHub issue
+mentioning the repository owner so GitHub's notification system can still alert
+you after an update.
 
 ## Notes
 
