@@ -10,7 +10,7 @@ from .config import AUDIT_DIR, DATA_DIR, INTERIM_DIR, PROCESSED_DIR, PUBLIC_DIR,
 from .enrichment.company import enrich_company
 from .enrichment.linkedin_api import BrightDataLinkedInClient
 from .enrichment.schema import normalize_brightdata_record
-from .matching.adjudicator import choose_linkedin_candidate
+from .matching.adjudicator import candidate_evidence_json, choose_linkedin_candidate
 from .matching.merge import append_new_official_scholars
 from .models import EmploymentObservation, LinkedInProfile, Scholar, clean_text, scholar_key, utc_now_iso
 from .official.cohort import graduation_year_from_cohort
@@ -225,6 +225,7 @@ def find_missing_linkedin(
     seed_dir: Path = SEED_DIR,
     limit: int = 0,
     providers: list[str] | None = None,
+    matching_mode: str = "llm",
 ) -> dict[str, object]:
     ensure_data_dirs()
     scholars = {row["scholar_id"]: row for row in _read_csv(seed_dir / "scholars.csv")}
@@ -239,13 +240,22 @@ def find_missing_linkedin(
     for row in pending:
         scholar = scholars.get(row["scholar_id"], {})
         name = scholar.get("scholar_name", row.get("scholar_name", ""))
+        country = scholar.get("country", "")
+        cohort = scholar.get("cohort", row.get("cohort", ""))
         candidates = collect_linkedin_candidates(
             name,
-            scholar.get("country", ""),
-            scholar.get("cohort", row.get("cohort", "")),
+            country,
+            cohort,
             providers=provider_names,
         )
-        url, decision = choose_linkedin_candidate(name, candidates)
+        url, decision = choose_linkedin_candidate(
+            name,
+            candidates,
+            country=country,
+            cohort=cohort,
+            official_bio=scholar.get("official_bio", ""),
+            mode=matching_mode,
+        )
         decisions.append(
             {
                 "scholar_id": row["scholar_id"],
@@ -253,9 +263,16 @@ def find_missing_linkedin(
                 "cohort": row.get("cohort", ""),
                 "accepted_url": url,
                 "accepted": str(bool(decision.get("accepted"))),
+                "adjudicator": clean_text(decision.get("adjudicator")),
+                "confidence": clean_text(decision.get("confidence")),
                 "reason": clean_text(decision.get("reason")),
+                "rationale": clean_text(decision.get("rationale")),
+                "selected_candidate_id": clean_text(decision.get("selected_candidate_id")),
+                "selected_candidate_url": clean_text(decision.get("selected_candidate_url")),
                 "candidate_count": len(candidates),
+                "candidate_evidence": candidate_evidence_json(candidates),
                 "providers": ";".join(provider_names),
+                "matching_mode": matching_mode,
                 "checked_at": utc_now_iso(),
             }
         )
@@ -263,14 +280,19 @@ def find_missing_linkedin(
             row["linkedin_url"] = url
             row["linkedin_slug"] = linkedin_slug(url)
             row["status"] = "present"
-            row["source"] = "search_verified"
+            row["source"] = "search_llm_verified" if decision.get("adjudicator") == "llm" else "search_heuristic_verified"
             accepted += 1
 
     if linkedin_rows:
         _write_csv(seed_dir / "linkedin_profiles.csv", linkedin_rows, list(linkedin_rows[0].keys()))
     if decisions:
         _write_csv(AUDIT_DIR / "linkedin_search_decisions.csv", decisions, list(decisions[0].keys()))
-    return {"checked": len(pending), "accepted": accepted, "audit": str(AUDIT_DIR / "linkedin_search_decisions.csv")}
+    return {
+        "checked": len(pending),
+        "accepted": accepted,
+        "matching_mode": matching_mode,
+        "audit": str(AUDIT_DIR / "linkedin_search_decisions.csv"),
+    }
 
 
 def enrich_brightdata(

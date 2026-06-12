@@ -34,11 +34,12 @@ jobs:
 
       - name: Search for missing LinkedIn URLs
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CX: ${{ secrets.GOOGLE_CX }}
           BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
           BING_SEARCH_API_KEY: ${{ secrets.BING_SEARCH_API_KEY }}
-        run: python -m schwarzman_network.cli find-linkedin
+        run: python -m schwarzman_network.cli find-linkedin --matching-mode llm
 
       - name: Enrich LinkedIn profiles with Bright Data
         env:

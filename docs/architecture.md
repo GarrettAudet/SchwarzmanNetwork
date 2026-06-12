@@ -93,15 +93,21 @@ data/
 2. Fetch the official Schwarzman Scholars roster.
 3. Append net-new official scholars to `data/seed/scholars.csv`.
 4. Add `N/A` LinkedIn rows for new scholars until a URL is verified.
-5. Search configured providers for missing LinkedIn URLs and promote only validated matches.
-6. Enrich verified LinkedIn URLs with Bright Data.
-7. Build `data/processed/scholar_information.csv`.
-8. Build `data/public/schwarzman_network.sqlite`.
-9. Export `data/public/scholars.csv`, `scholars.json`, `companies.csv`, and `dataset_summary.json`.
+5. Search configured providers for missing LinkedIn URLs.
+6. Send the scholar context and search-result candidates to the LLM adjudicator.
+7. Promote only a high-confidence LinkedIn `/in/` URL selected from the candidate list.
+8. Enrich verified LinkedIn URLs with Bright Data.
+9. Build `data/processed/scholar_information.csv`.
+10. Build `data/public/schwarzman_network.sqlite`.
+11. Export `data/public/scholars.csv`, `scholars.json`, `companies.csv`, and `dataset_summary.json`.
 
 Missing LinkedIn URLs are not guessed. Search providers and manual imports can
 add candidates, but only validated profile URLs should be promoted into
-`linkedin_profiles.csv`.
+`linkedin_profiles.csv`. The default automated mode is `llm`; if
+`OPENAI_API_KEY` is unavailable, the run records an audit decision and leaves the
+profile as `N/A`. The older deterministic matcher is available only through the
+explicit `--matching-mode heuristic` or `--matching-mode llm-or-heuristic`
+options.
 
 ## Key Commands
 
@@ -110,10 +116,14 @@ $env:PYTHONPATH='src'
 python -m schwarzman_network.cli import-workbook --input "C:\Users\garre\OneDrive\Desktop\SchwarzmanNetworkAnalysis.xlsx"
 python -m schwarzman_network.cli fetch-official
 python -m schwarzman_network.cli sync-official
-python -m schwarzman_network.cli find-linkedin
+python -m schwarzman_network.cli find-linkedin --matching-mode llm
+python -m schwarzman_network.cli trial-linkedin-matching
 python -m schwarzman_network.cli enrich-brightdata --limit 25
 python -m schwarzman_network.cli refresh
 ```
 
 The Bright Data command reads `BRIGHT_DATA_API`, `BRIGHT_DATA_API_KEY`, or
 `BRIGHTDATA_API_KEY` from the environment or `.env`.
+
+The LinkedIn adjudicator reads `OPENAI_API_KEY` from the environment or `.env`
+when `--matching-mode llm` is used.

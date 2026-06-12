@@ -31,13 +31,14 @@ Confidence, Last Updated, Source URLs
 3. Append net-new official scholars to the seed data.
 4. Keep missing or unverified LinkedIn URLs as `N/A`.
 5. Search configured providers for missing LinkedIn URLs.
-6. Promote only validated LinkedIn `/in/` profile URLs.
-7. Enrich verified LinkedIn profiles with Bright Data.
-8. Classify companies into one-word industries.
-9. Attach one-sentence company descriptions when evidence is available.
-10. Build the processed scholar CSV.
-11. Build SQLite and public CSV/JSON exports.
-12. Commit refreshed public artifacts.
+6. Ask an LLM to adjudicate the search-result candidates using scholar context.
+7. Promote only high-confidence LinkedIn `/in/` URLs selected from the candidate list.
+8. Enrich verified LinkedIn profiles with Bright Data.
+9. Classify companies into one-word industries.
+10. Attach one-sentence company descriptions when evidence is available.
+11. Build the processed scholar CSV.
+12. Build SQLite and public CSV/JSON exports.
+13. Commit refreshed public artifacts.
 
 ## Local Commands
 
@@ -58,9 +59,15 @@ Run yearly-style refresh steps:
 ```powershell
 python -m schwarzman_network.cli fetch-official
 python -m schwarzman_network.cli sync-official
-python -m schwarzman_network.cli find-linkedin
+python -m schwarzman_network.cli find-linkedin --matching-mode llm
 python -m schwarzman_network.cli enrich-brightdata
 python -m schwarzman_network.cli refresh
+```
+
+Run controlled LinkedIn matching trials:
+
+```powershell
+python -m schwarzman_network.cli trial-linkedin-matching
 ```
 
 ## GitHub Actions
@@ -71,6 +78,10 @@ January 15 and can also be triggered manually.
 Required secret for Bright Data enrichment:
 
 - `BRIGHTDATA_API_KEY` or `BRIGHT_DATA_API` or `BRIGHT_DATA_API_KEY`
+
+Required secret for automated LinkedIn URL adjudication:
+
+- `OPENAI_API_KEY`
 
 Optional search provider secrets:
 
@@ -96,7 +107,10 @@ you after an update.
 ## Notes
 
 The pipeline does not guess LinkedIn URLs. Rows with missing or non-profile URLs
-remain `N/A` until a validated profile URL is found.
+remain `N/A` until a validated profile URL is found. The default LinkedIn
+matching mode sends the scholar context and search-result candidates to an LLM,
+which may select only one of the provided candidate URLs or return `N/A`. A
+candidate is promoted only when the LLM returns a high-confidence match.
 
 Bright Data enrichment is used only for verified LinkedIn profile URLs. If
 Bright Data returns no company, title, or location for a profile, the field stays
