@@ -1,0 +1,11 @@
+node_modules
+.browser_profiles
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+data/private/
+data/interim/*.jsonl
+data/interim/search_cache_*.json
+*.sqlite-shm
+*.sqlite-wal

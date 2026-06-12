@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "schwarzman-network"
+version = "0.1.0"
+description = "Schwarzman Scholars roster, LinkedIn, employment, company, and industry enrichment pipeline."
+requires-python = ">=3.11"
+dependencies = [
+  "openpyxl>=3.1.0",
+]
+
+[project.scripts]
+schwarzman-network = "schwarzman_network.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
