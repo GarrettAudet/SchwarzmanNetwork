@@ -15,6 +15,18 @@ on:
         description: "Set to true to refetch all valid LinkedIn profiles, not just pending profiles."
         required: false
         default: "false"
+      enrichlayer_limit:
+        description: "Optional cap on Enrichlayer profiles. 0 means all pending LinkedIn URLs."
+        required: false
+        default: "200"
+      enrichlayer_delay_sec:
+        description: "Seconds to wait between Enrichlayer single-profile requests."
+        required: false
+        default: "10"
+      enrichlayer_refresh:
+        description: "Set to true to refetch all valid LinkedIn profiles through Enrichlayer."
+        required: false
+        default: "false"
   schedule:
     - cron: "17 9 15 1 *"
 
@@ -69,6 +81,24 @@ jobs:
             echo "Bright Data secret not configured; skipping Bright Data enrichment."
           fi
 
+      - name: Enrich LinkedIn profiles with Enrichlayer
+        env:
+          ENRICH_API: ${{ secrets.ENRICH_API }}
+          ENRICH_API_KEY: ${{ secrets.ENRICH_API_KEY }}
+          ENRICHLAYER_LIMIT: ${{ github.event.inputs.enrichlayer_limit || '200' }}
+          ENRICHLAYER_DELAY_SEC: ${{ github.event.inputs.enrichlayer_delay_sec || '10' }}
+          ENRICHLAYER_REFRESH: ${{ github.event.inputs.enrichlayer_refresh || 'false' }}
+        run: |
+          if [ -n "$ENRICH_API$ENRICH_API_KEY" ]; then
+            args=(--limit "$ENRICHLAYER_LIMIT" --delay-sec "$ENRICHLAYER_DELAY_SEC" --max-retries 1 --retry-after-sec 300)
+            if [ "$ENRICHLAYER_REFRESH" = "true" ]; then
+              args+=(--refresh)
+            fi
+            python -m schwarzman_network.cli enrich-enrichlayer "${args[@]}"
+          else
+            echo "Enrichlayer secret not configured; skipping Enrichlayer enrichment."
+          fi
+
       - name: Build processed data and public exports
         run: python -m schwarzman_network.cli refresh
 
@@ -77,7 +107,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Refresh Schwarzman network data"
-          file_pattern: data/raw/*.json data/seed/*.csv data/audit/*.csv data/processed/*.csv data/public/*
+          file_pattern: data/raw/*.json data/seed/*.csv data/audit/*.csv data/audit/*.json data/processed/*.csv data/public/*
 
       - name: Check email configuration
         id: email-config
