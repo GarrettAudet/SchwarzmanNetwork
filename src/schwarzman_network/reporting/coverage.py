@@ -6,7 +6,8 @@ def coverage_summary(rows: list[dict[str, str]]) -> dict[str, int]:
     with_linkedin = sum(1 for row in rows if row.get("LinkedIn Address") and row.get("LinkedIn Address") != "N/A")
     with_company = sum(1 for row in rows if row.get("Current Company"))
     with_title = sum(1 for row in rows if row.get("Current Job Title"))
-    with_location = sum(1 for row in rows if row.get("Current Location"))
+    with_profile_location = sum(1 for row in rows if row.get("Profile Location"))
+    with_job_location = sum(1 for row in rows if row.get("Job Location"))
     with_industry = sum(1 for row in rows if row.get("Industry"))
     with_description = sum(1 for row in rows if row.get("Company Description"))
     return {
@@ -17,8 +18,10 @@ def coverage_summary(rows: list[dict[str, str]]) -> dict[str, int]:
         "missing_company": total - with_company,
         "with_current_job_title": with_title,
         "missing_current_job_title": total - with_title,
-        "with_current_location": with_location,
-        "missing_current_location": total - with_location,
+        "with_profile_location": with_profile_location,
+        "missing_profile_location": total - with_profile_location,
+        "with_job_location": with_job_location,
+        "missing_job_location": total - with_job_location,
         "with_industry": with_industry,
         "missing_industry": total - with_industry,
         "with_company_description": with_description,

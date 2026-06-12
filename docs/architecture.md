@@ -97,9 +97,10 @@ data/
 6. Send the scholar context and search-result candidates to the LLM adjudicator.
 7. Promote only a high-confidence LinkedIn `/in/` URL selected from the candidate list.
 8. Enrich verified LinkedIn URLs with Bright Data.
-9. Build `data/processed/scholar_information.csv`.
-10. Build `data/public/schwarzman_network.sqlite`.
-11. Export `data/public/scholars.csv`, `scholars.json`, `companies.csv`, and `dataset_summary.json`.
+9. Split Bright Data location into profile-level and job-level locations.
+10. Build `data/processed/scholar_information.csv`.
+11. Build `data/public/schwarzman_network.sqlite`.
+12. Export `data/public/scholars.csv`, `scholars.json`, `companies.csv`, and `dataset_summary.json`.
 
 Missing LinkedIn URLs are not guessed. Search providers and manual imports can
 add candidates, but only validated profile URLs should be promoted into
@@ -118,12 +119,17 @@ python -m schwarzman_network.cli fetch-official
 python -m schwarzman_network.cli sync-official
 python -m schwarzman_network.cli find-linkedin --matching-mode llm
 python -m schwarzman_network.cli trial-linkedin-matching
-python -m schwarzman_network.cli enrich-brightdata --limit 25
+python -m schwarzman_network.cli enrich-brightdata --refresh
 python -m schwarzman_network.cli refresh
 ```
 
 The Bright Data command reads `BRIGHT_DATA_API`, `BRIGHT_DATA_API_KEY`, or
 `BRIGHTDATA_API_KEY` from the environment or `.env`.
+
+Bright Data profile `city`/`location` is treated as profile location. Job
+location is derived only from current-role evidence in `experience[].location`,
+nested `experience[].positions[].location`, or `current_company.location`.
+Profiles without job-level location evidence keep `Job Location` blank.
 
 The LinkedIn adjudicator reads `OPENAI_API_KEY` from the environment or `.env`
 when `--matching-mode llm` is used.

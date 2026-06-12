@@ -17,13 +17,21 @@ SCHEMA_DIR = ROOT / "schema"
 OFFICIAL_SOURCE_URL = "https://www.schwarzmanscholars.org/scholars/"
 BRIGHTDATA_DATASET_ID = "gd_l1viktl72bvl7bjuj0"
 BRIGHTDATA_LINKEDIN_FIELDS = [
+    "input",
+    "input_url",
+    "url",
+    "name",
     "position",
-    "education",
+    "current_company",
     "current_company_name",
-    "city",
-    "experience",
     "current_company_company_id",
+    "city",
     "location",
+    "country_code",
+    "experience",
+    "education",
+    "educations_details",
+    "about",
 ]
 
 

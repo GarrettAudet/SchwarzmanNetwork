@@ -99,6 +99,10 @@ def _iter_brightdata_cached_records(raw_path: Path) -> list[dict[str, object]]:
                         "position": row.get("position", ""),
                         "current_company_name": row.get("current_company_name", ""),
                         "current_company_company_id": row.get("current_company_company_id", ""),
+                        "profile_city": row.get("profile_city", ""),
+                        "profile_location": row.get("profile_location", ""),
+                        "job_location": row.get("job_location", ""),
+                        "job_location_source": row.get("job_location_source", ""),
                         "city": row.get("city", ""),
                         "location": row.get("location", ""),
                     },
@@ -394,15 +398,20 @@ def build_processed_profiles(seed_dir: Path = SEED_DIR, processed_path: Path | N
         bright = brightdata_by_url.get(linkedin_url, {})
         current_company = _blank_if_na(bright.get("current_company_name") or seed_observation.get("current_company", ""))
         current_title = _blank_if_na(bright.get("position") or seed_observation.get("current_title", ""))
-        current_location = _blank_if_na(bright.get("location") or bright.get("city") or seed_observation.get("current_location", ""))
-        company = enrich_company(current_company, current_title, role_context=f"{current_title} {current_location}", use_llm=use_llm)
+        profile_location = _blank_if_na(
+            bright.get("profile_location") or bright.get("location") or bright.get("profile_city") or bright.get("city")
+            or seed_observation.get("current_location", "")
+        )
+        job_location = _blank_if_na(bright.get("job_location"))
+        company = enrich_company(current_company, current_title, role_context=f"{current_title} {job_location}", use_llm=use_llm)
         rows.append(
             {
                 "Scholar Name": scholar.get("scholar_name", ""),
                 "Industry": company.industry,
                 "Cohort": scholar.get("cohort", ""),
                 "LinkedIn Address": linkedin_url,
-                "Current Location": current_location,
+                "Profile Location": profile_location,
+                "Job Location": job_location,
                 "Current Job Title": current_title,
                 "Current Company": current_company,
                 "Company Description": company.company_description,
@@ -418,7 +427,8 @@ def build_processed_profiles(seed_dir: Path = SEED_DIR, processed_path: Path | N
         "Industry",
         "Cohort",
         "LinkedIn Address",
-        "Current Location",
+        "Profile Location",
+        "Job Location",
         "Current Job Title",
         "Current Company",
         "Company Description",

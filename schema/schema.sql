@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS employment_observations (
   scholar_id TEXT NOT NULL REFERENCES scholars(scholar_id) ON DELETE CASCADE,
   observed_at TEXT NOT NULL,
   current_location TEXT,
+  profile_location TEXT,
+  job_location TEXT,
   current_company TEXT,
   current_title TEXT,
   source_kind TEXT,

@@ -95,15 +95,17 @@ def build_database(
             conn.execute(
                 """
                 INSERT INTO employment_observations (
-                  scholar_id, observed_at, current_location, current_company,
+                  scholar_id, observed_at, current_location, profile_location, job_location, current_company,
                   current_title, source_kind, source_url, confidence, raw_source
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     row.get("scholar_id"),
                     row.get("observed_at") or now,
                     row.get("current_location"),
+                    row.get("current_location"),
+                    "",
                     row.get("current_company"),
                     row.get("current_title"),
                     row.get("source_kind"),
@@ -113,25 +115,34 @@ def build_database(
                 ),
             )
         for row in processed:
-            if not (row.get("Current Company") or row.get("Current Location") or row.get("Current Job Title")):
+            if not (
+                row.get("Current Company")
+                or row.get("Profile Location")
+                or row.get("Job Location")
+                or row.get("Current Job Title")
+            ):
                 continue
             scholar_id = scholar_ids_by_name_cohort.get(
                 (clean_text(row.get("Scholar Name")).lower(), clean_text(row.get("Cohort")).upper())
             )
             if not scholar_id:
                 continue
+            profile_location = row.get("Profile Location", "")
+            job_location = row.get("Job Location", "")
             conn.execute(
                 """
                 INSERT INTO employment_observations (
-                  scholar_id, observed_at, current_location, current_company,
+                  scholar_id, observed_at, current_location, profile_location, job_location, current_company,
                   current_title, source_kind, source_url, confidence, raw_source
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     scholar_id,
                     row.get("Last Updated") or now,
-                    row.get("Current Location"),
+                    job_location or profile_location,
+                    profile_location,
+                    job_location,
                     row.get("Current Company"),
                     row.get("Current Job Title"),
                     "processed_profile",

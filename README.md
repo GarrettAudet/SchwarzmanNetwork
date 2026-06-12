@@ -19,7 +19,7 @@ publishes a SQLite database plus CSV/JSON exports.
 The main scholar export uses this column order:
 
 ```text
-Scholar Name, Industry, Cohort, LinkedIn Address, Current Location,
+Scholar Name, Industry, Cohort, LinkedIn Address, Profile Location, Job Location,
 Current Job Title, Current Company, Company Description, Country,
 Confidence, Last Updated, Source URLs
 ```
@@ -60,7 +60,7 @@ Run yearly-style refresh steps:
 python -m schwarzman_network.cli fetch-official
 python -m schwarzman_network.cli sync-official
 python -m schwarzman_network.cli find-linkedin --matching-mode llm
-python -m schwarzman_network.cli enrich-brightdata
+python -m schwarzman_network.cli enrich-brightdata --refresh
 python -m schwarzman_network.cli refresh
 ```
 
@@ -73,7 +73,9 @@ python -m schwarzman_network.cli trial-linkedin-matching
 ## GitHub Actions
 
 The workflow in `.github/workflows/yearly-refresh.yml` runs once per year on
-January 15 and can also be triggered manually.
+January 15 and can also be triggered manually. Manual runs can set
+`brightdata_refresh=true` to refetch all valid LinkedIn profiles instead of only
+profiles not already present in the Bright Data audit cache.
 
 Required secret for Bright Data enrichment:
 
@@ -113,5 +115,8 @@ which may select only one of the provided candidate URLs or return `N/A`. A
 candidate is promoted only when the LLM returns a high-confidence match.
 
 Bright Data enrichment is used only for verified LinkedIn profile URLs. If
-Bright Data returns no company, title, or location for a profile, the field stays
-blank unless a prior reviewed seed value exists.
+Bright Data returns no company or title for a profile, the field stays blank
+unless a prior reviewed seed value exists. `Profile Location` is the profile
+city/location. `Job Location` is populated only from job-derived Bright Data
+fields such as `experience[].location`, nested `experience[].positions[].location`,
+or `current_company.location`; it does not fall back to profile location.
