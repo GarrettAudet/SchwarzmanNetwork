@@ -1,0 +1,237 @@
+scholar_id,scholar_name,cohort,accepted_url,accepted,adjudicator,confidence,reason,rationale,selected_candidate_id,selected_candidate_url,candidate_count,candidate_evidence,providers,matching_mode,checked_at
+c1-alibek-nurkesh,Alibek Nurkesh,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-angela-chen,Angela Chen,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-arthur-yi-chieh-kao,Arthur Yi Chieh Kao,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-atticus-deprospo,Atticus DeProspo,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-cameron-hickert,Cameron Hickert,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-chuang-zhao,Chuang Zhao,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-danai-mavunga,Danai Mavunga,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-hongyu-zhao,Hongyu Zhao,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-jasmin-stadler,Jasmin Stadler,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-jie-deng,Jie Deng,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-joseph-broderick,Joseph Broderick,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-kaidi-zhang,Kaidi Zhang,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-kay-teo,Kay Teo,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-kumiko-mita,Kumiko Mita,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-mingyuan-hu,Mingyuan Hu,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-natasha-rachman,Natasha Rachman,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-regina-parker,Regina Parker,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-rosy-yung-yang,Rosy Yung Yang,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-sara-sudetic,Sara Sudetic,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-shijun-li,Shijun Li,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-weijie-tan,Weijie Tan,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c1-zhong-chu,Zhong Chu,C1,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-ben-lyons,Ben Lyons,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-benjamin-dowdle,Benjamin Dowdle,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-bo-seo,Bo Seo,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-brian-young,Brian Young,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-chang-zhao,Chang Zhao,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-chien-sheng,Chien Sheng,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-daniel-concha-zegarra,Daniel Concha Zegarra,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-david-harris,David Harris,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-don-stanley-dalisay,Don Stanley Dalisay,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-eleanor-freund,Eleanor Freund,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-halimo-hassen,Halimo Hassen,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-kevin-wong,Kevin Wong,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-kwok-wai-christopher-ng,Kwok Wai Christopher Ng,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-lukas-schmelter,Lukas Schmelter,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-naina-qayyum,Naina Qayyum,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-paul-wasserman,Paul Wasserman,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-rachel-walker,Rachel Walker,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-robert-mccomb,Robert McComb,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-sin-yun-li,Sin-Yun LI,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-tonatiuh-lievano-beltran,Tonatiuh Lievano Beltran,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-xing-ma,Xing Ma,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-xinghan-wang,Xinghan WANG,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-yiwei-xu,Yiwei Xu,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-yue-wu,Yue Wu,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c2-zheng-guo,Zheng GUO,C2,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-alice-dawkins,Alice Dawkins,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-andi-wang,Andi WANG,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-arjun-kapur,Arjun Kapur,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-aron-rimanyi,Aron Rimanyi,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-bradley-torpey,Bradley Torpey,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-colleen-ryan,Colleen Ryan,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-duy-danny-nguyen,Duy Danny Nguyen,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-elizabeth-hardister,Elizabeth Hardister,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-elizabeth-maio,Elizabeth Maio,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-jae-hyun-lee,Jae Hyun Lee,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-joelle-cheong,Joelle Cheong,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-keyang-peng,Keyang PENG,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-lidiia-zhgyr,Lidiia Zhgyr,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-lindokuhle-ntuli,Lindokuhle Ntuli,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-lingyu-zhou,Lingyu ZHOU,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-lucienne-oyer,Lucienne Oyer,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-nicole-ching,Nicole Ching,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-noah-lachs,Noah Lachs,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-olayemi-anifowose-eso,Olayemi Anifowose-Eso,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-pu-yan,Pu YAN,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-trevor-wrobleski,Trevor Wrobleski,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-william-drexel,William Drexel,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c3-yue-wu,Yue WU,C3,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-abraham-cass,Abraham Cass,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-aleksandr-zhuravlev,Aleksandr Zhuravlev,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-amanda-morrison,Amanda Morrison,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-carlos-rodriguez,Carlos Rodriguez,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-eduardo-batista,Eduardo Batista,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-felipe-ignacio-flores-guajardo,Felipe Ignacio Flores Guajardo,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-guanhua-feng,Guanhua Feng,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-guanzhi-li,Guanzhi Li,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-hinako-hirasa,Hinako Hirasa,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-jiayu-zeng,Jiayu Zeng,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-jina-jia-xuan-lim,Jina Jia Xuan Lim,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-justin-kong,Justin Kong,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-kabir-gandhi,Kabir Gandhi,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-laura-darnley,Laura Darnley,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-paul-greenbaum,Paul Greenbaum,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-priscilla-guo,Priscilla Guo,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-rebekah-ninan,Rebekah Ninan,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-richard-dekold,Richard DeKold,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-suet-yung-tang,Suet Yung Tang,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-taylor-wong,Taylor Wong,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-varun-sharma,Varun Sharma,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-viraj-patel,Viraj Patel,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-wenchao-yu,Wenchao Yu,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-xuanhao-zhang,Xuanhao Zhang,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-yogaish-khastgir,Yogaish Khastgir,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-yuan-zhang,Yuan Zhang,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-yuxuan-chen,Yuxuan Chen,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-zequn-zhao,Zequn Zhao,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-zhongyuan-zeng,Zhongyuan Zeng,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-amara-majeed,Amara Majeed,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-christopher-carpenter,Christopher Carpenter,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-christopher-li,Christopher Li,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-esder-chong,Esder Chong,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-geraldy-francois,Geraldy Francois,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-michael-deluca,Michael DeLuca,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-michael-thorburn,Michael Thorburn,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-mina-khattak,Mina Khattak,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-qinghong-li,Qinghong Li,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-sarah-mcmillian,Sarah McMillian,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-songzhi-huang,Songzhi Huang,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-weixi-jin,Weixi Jin,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-william-cullen,William Cullen,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c5-yadong-li,Yadong Li,C5,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-alexander-crich,Alexander Crich,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-ariana-chaivaranon,Ariana Chaivaranon,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-chiu-yan-ho,Chiu Yan Ho,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-dabin-jeon,Dabin Jeon,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-eduarda-silva,Eduarda Silva,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-fuk-leong-lam,Fuk Leong Lam,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-harry-seavey,Harry Seavey,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-jenna-wichterman,Jenna Wichterman,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-joshua-kemp,Joshua Kemp,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-kefei-wu,Kefei Wu,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-kuwar-singh,Kuwar Singh,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-mabel-kai-tong-tie,Mabel Kai Tong Tie,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-mallie-prytherch,Mallie Prytherch,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-mikaela-rabb,Mikaela Rabb,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-raven-witherspoon,Raven Witherspoon,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-sheng-yu,Sheng Yu,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-xiaoheng-xu,Xiaoheng Xu,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c6-yu-gu,Yu Gu,C6,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-alistair-s-mukondiwa,Alistair S. Mukondiwa,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-boming-yang,Boming Yang,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-can-wang,Can Wang,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-christina-quattrocki-knight,Christina Quattrocki Knight,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-daniel-ruiz-de-la-concha,Daniel Ruiz de la Concha,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-david-shin,David Shin,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-hengan-tang,Hengan Tang,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-jiarong-wang,Jiarong Wang,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-john-ferguson,John Ferguson,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-lin-ye,Lin Ye,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-qingrong-xin,Qingrong Xin,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-qinyu-hu,Qinyu Hu,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-shuxi-liu,Shuxi Liu,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-si-tou-un,Si Tou Un,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-stz-tsung-han,Stz-Tsung Han,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-tracy-li,Tracy Li,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-tsz-kwan-chiu,Tsz Kwan Chiu,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-yike-qiu,Yike Qiu,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-yiping-zeng,Yiping Zeng,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-yuchen-wang,Yuchen Wang,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-yunying-pei,Yunying Pei,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-zeliang-cai,Zeliang Cai,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-zhengfan-pan,Zhengfan Pan,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c7-zhicheng-wang,Zhicheng Wang,C7,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-aaron-guo,Aaron Guo,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-hanyuan-wang,Hanyuan Wang,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-jessica-ringer,Jessica Ringer,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-jiaqi-liu,Jiaqi Liu,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-jinfei-teng,Jinfei Teng,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-joyce-zhou,Joyce Zhou,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-katherine-gross-whitaker,Katherine Gross-Whitaker,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-kewen-kong,Kewen Kong,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-kunho-kim,Kunho Kim,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-michael-nyakundi,Michael Nyakundi,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-qingjie-zeng,Qingjie Zeng,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-ruli-bai,Ruli Bai,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-yangzhi-zhao,Yangzhi Zhao,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-yitong-lin,Yitong Lin,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-yucheng-chen,Yucheng Chen,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c8-yuchuan-zheng,Yuchuan Zheng,C8,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-alexandra-sourakov,Alexandra Sourakov,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-andrew-deweese,Andrew DeWeese,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-bincheng-mao,Bincheng Mao,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-diana-lam,Diana Lam,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-hossameldeen-abdelfatah,HossamEldeen Abdelfatah,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-htet-myet-min-tun,Htet Myet Min Tun,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-jia-li,Jia Li,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-joy-shi,Joy Shi,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-lawrence-jia,Lawrence Jia,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-mithra-dhinakaran,Mithra Dhinakaran,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-peirong-li,Peirong Li,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-ruochen-sun,Ruochen Sun,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-shuyuan-han,Shuyuan Han,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-tianli-liang,Tianli Liang,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-yuexiao-ni,Yuexiao Ni,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-yutong-zhong,Yutong Zhong,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c9-zirong-hong,Zirong Hong,C9,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-adele-zhong,Adele Zhong,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-anthony-ma,Anthony Ma,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-chloe-liu,Chloe Liu,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-falecie-wang,Falecie Wang,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-hannah-kuhn,Hannah Kuhn,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-imaan-mirza,Imaan Mirza,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-jacob-keisner,Jacob Keisner,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-jasper-schutt,Jasper Schutt,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-jing-jing-yang,Jing Jing Yang,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-josemaria-silvestrini,Josemaria Silvestrini,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-junhui-xu,Junhui Xu,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-lozangtashi,Lozangtashi,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-maya-rosen,Maya Rosen,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-moriah-hamilton,Moriah Hamilton,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-yanning-liu,Yanning Liu,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c10-zilu-wang,Zilu Wang,C10,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-aleena-gul,Aleena Gul,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-ashley-choi,Ashley Choi,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-catherine-zeng,Catherine Zeng,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-chinwendum-egbude,Chinwendum Egbude,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-david-hischier,David Hischier,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-donia-elmansy,Donia Elmansy,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-ethan-sperla,Ethan Sperla,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-gleb-lisichenko,Gleb Lisichenko,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-hpone-thit-htoo,Hpone Thit Htoo,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-ilia-kosar,Ilia Kosar,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-jason-chau,Jason Chau,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-jason-chiang,Jason Chiang,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-jos-ginocchio-moraiz,José Ginocchio Moraiz,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-kiara-shan,Kiara Shan,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-kingwell-ma,Kingwell Ma,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-kyle-li,Kyle Li,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-leonardo-alves-amaral-torres,Leonardo Alves Amaral Torres,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-leonas-pausch,Leonas Pausch,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-patricio-ortiz,Patricio Ortiz,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-peter-scheuer,Peter Scheuer,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-pranav-pattatathunaduvil,Pranav Pattatathunaduvil,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-rachel-ou,Rachel Ou,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-ray-lin,Ray Lin,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-sabrina-steinberga,Sabrina Steinberga,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-schuyler-wei,Schuyler Wei,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-shankai-wei,Shankai Wei,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-shir-diner,Shir Diner,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-tiffanie-laborie-bousquet,Tiffanie Laborie-Bousquet,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-vickie-liu,Vickie Liu,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-xueyi-zhou,Xueyi Zhou,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c11-yixi-zhang,Yixi Zhang,C11,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
+c4-hima-tammineedi,Hima Tammineedi,C4,N/A,False,llm,low,no_candidates,,,N/A,0,[],google;brave;bing,llm,2026-06-12T03:14:31Z
