@@ -1,0 +1,20 @@
+{
+  "attempted_this_run": 10,
+  "fetched_this_run": 10,
+  "errors_this_run": 0,
+  "requested_limit": 190,
+  "refresh": false,
+  "candidate_count_before_limit": 1251,
+  "selected_count": 190,
+  "last_seed_row_number": 26,
+  "last_scholar_id": "c1-christian-f-hrby",
+  "last_scholar_name": "Christian Føhrby",
+  "last_linkedin_url": "https://www.linkedin.com/in/cfohrby",
+  "next_seed_row_number": 28,
+  "next_scholar_id": "c1-claus-kao-chu-soong",
+  "next_scholar_name": "Claus Kao-Chu Soong",
+  "next_linkedin_url": "https://www.linkedin.com/in/claus-soong",
+  "stopped_reason": "manual_stop_after_rate_limit_429",
+  "updated_at": "2026-06-12T18:21:32Z",
+  "resume_command": "python -m schwarzman_network.cli enrich-enrichlayer --limit 180 --delay-sec 10 --max-retries 1 --retry-after-sec 300"
+}
