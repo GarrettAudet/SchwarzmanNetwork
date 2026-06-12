@@ -68,3 +68,8 @@ def brightdata_api_key() -> str:
 def openai_api_key() -> str:
     load_dotenv()
     return os.environ.get("OPENAI_API_KEY", "")
+
+
+def enrichlayer_api_key() -> str:
+    load_dotenv()
+    return os.environ.get("ENRICH_API") or os.environ.get("ENRICH_API_KEY") or ""

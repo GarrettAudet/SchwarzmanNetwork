@@ -16,6 +16,11 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def _optional_int(value: object) -> int | None:
+    text = clean_text(value)
+    return int(text) if text.isdigit() else None
+
+
 def build_database(
     db_path: Path | None = None,
     seed_dir: Path = SEED_DIR,
@@ -96,9 +101,10 @@ def build_database(
                 """
                 INSERT INTO employment_observations (
                   scholar_id, observed_at, current_location, profile_location, job_location, current_company,
-                  current_title, source_kind, source_url, confidence, raw_source
+                  current_title, experience_count, education_count, work_history_json, education_json,
+                  enrichment_source, enrichment_status, source_kind, source_url, confidence, raw_source
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     row.get("scholar_id"),
@@ -108,6 +114,12 @@ def build_database(
                     "",
                     row.get("current_company"),
                     row.get("current_title"),
+                    None,
+                    None,
+                    "",
+                    "",
+                    "",
+                    "",
                     row.get("source_kind"),
                     row.get("source_url"),
                     row.get("confidence"),
@@ -120,6 +132,8 @@ def build_database(
                 or row.get("Profile Location")
                 or row.get("Job Location")
                 or row.get("Current Job Title")
+                or row.get("Work History")
+                or row.get("Education")
             ):
                 continue
             scholar_id = scholar_ids_by_name_cohort.get(
@@ -133,9 +147,10 @@ def build_database(
                 """
                 INSERT INTO employment_observations (
                   scholar_id, observed_at, current_location, profile_location, job_location, current_company,
-                  current_title, source_kind, source_url, confidence, raw_source
+                  current_title, experience_count, education_count, work_history_json, education_json,
+                  enrichment_source, enrichment_status, source_kind, source_url, confidence, raw_source
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     scholar_id,
@@ -145,6 +160,12 @@ def build_database(
                     job_location,
                     row.get("Current Company"),
                     row.get("Current Job Title"),
+                    _optional_int(row.get("Experience Count")),
+                    _optional_int(row.get("Education Count")),
+                    row.get("Work History"),
+                    row.get("Education"),
+                    row.get("Enrichment Source"),
+                    row.get("Enrichment Status"),
                     "processed_profile",
                     row.get("Source URLs"),
                     row.get("Confidence"),

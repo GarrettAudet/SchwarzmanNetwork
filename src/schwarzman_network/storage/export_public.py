@@ -47,13 +47,19 @@ def export_public(db_path: Path, public_dir: Path = PUBLIC_DIR) -> dict[str, Pat
         "Current Job Title",
         "Current Company",
         "Company Description",
+        "Experience Count",
+        "Education Count",
+        "Work History",
+        "Education",
+        "Enrichment Source",
+        "Enrichment Status",
         "Country",
         "Confidence",
         "Last Updated",
         "Source URLs",
     ]
     with csv_path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=headers)
+        writer = csv.DictWriter(handle, fieldnames=headers, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -61,6 +67,7 @@ def export_public(db_path: Path, public_dir: Path = PUBLIC_DIR) -> dict[str, Pat
         writer = csv.DictWriter(
             handle,
             fieldnames=["Company", "Industry", "Company Description", "Confidence", "Method", "Source URL", "Enriched At"],
+            lineterminator="\n",
         )
         writer.writeheader()
         writer.writerows(company_rows)

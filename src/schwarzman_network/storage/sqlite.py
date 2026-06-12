@@ -24,5 +24,15 @@ def initialize(conn: sqlite3.Connection) -> None:
         conn.execute("ALTER TABLE employment_observations ADD COLUMN profile_location TEXT")
     if "job_location" not in existing_columns:
         conn.execute("ALTER TABLE employment_observations ADD COLUMN job_location TEXT")
+    for column, column_type in {
+        "experience_count": "INTEGER",
+        "education_count": "INTEGER",
+        "work_history_json": "TEXT",
+        "education_json": "TEXT",
+        "enrichment_source": "TEXT",
+        "enrichment_status": "TEXT",
+    }.items():
+        if column not in existing_columns:
+            conn.execute(f"ALTER TABLE employment_observations ADD COLUMN {column} {column_type}")
     conn.executescript((SCHEMA_DIR / "views.sql").read_text(encoding="utf-8"))
     conn.commit()

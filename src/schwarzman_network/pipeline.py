@@ -2,12 +2,19 @@ from __future__ import annotations
 
 import csv
 import json
+import time
 from pathlib import Path
 
 from openpyxl import load_workbook
 
 from .config import AUDIT_DIR, DATA_DIR, INTERIM_DIR, PROCESSED_DIR, PUBLIC_DIR, RAW_DIR, SEED_DIR, ensure_data_dirs
 from .enrichment.company import enrich_company
+from .enrichment.enrichlayer import (
+    ENRICHLAYER_FIELDNAMES,
+    EnrichLayerClient,
+    EnrichLayerError,
+    normalize_enrichlayer_record,
+)
 from .enrichment.linkedin_api import BrightDataLinkedInClient
 from .enrichment.schema import normalize_brightdata_record
 from .matching.adjudicator import candidate_evidence_json, choose_linkedin_candidate
@@ -25,7 +32,7 @@ from .storage.export_public import export_public
 def _write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     return path
@@ -398,12 +405,178 @@ def enrich_brightdata(
     return {"pending": len(candidates), "fetched": fetched_count, "raw": str(raw_path), "normalized": str(normalized_path)}
 
 
+def _write_enrichlayer_progress(progress_path: Path, payload: dict[str, object]) -> None:
+    progress_path.write_text(json.dumps(payload, indent=2, ensure_ascii=True), encoding="utf-8")
+
+
+def _enrichlayer_resume_command(
+    limit: int,
+    fetched: int,
+    delay_sec: float,
+    max_retries: int,
+    retry_after_sec: float,
+) -> str:
+    resume_limit = max(limit - fetched, 1) if limit > 0 else 0
+    return (
+        "python -m schwarzman_network.cli enrich-enrichlayer "
+        f"--limit {resume_limit} --delay-sec {delay_sec:g} "
+        f"--max-retries {max_retries} --retry-after-sec {retry_after_sec:g}"
+    )
+
+
+def enrich_enrichlayer(
+    seed_dir: Path = SEED_DIR,
+    limit: int = 200,
+    refresh: bool = False,
+    delay_sec: float = 0.0,
+    max_retries: int = 1,
+    retry_after_sec: float = 65.0,
+) -> dict[str, object]:
+    ensure_data_dirs()
+    linkedin_rows = _read_csv(seed_dir / "linkedin_profiles.csv")
+    normalized_path = AUDIT_DIR / "enrichlayer_profile_decisions.csv"
+    progress_path = AUDIT_DIR / "enrichlayer_progress.json"
+    existing_rows = _read_csv(normalized_path)
+    existing_by_url = {
+        normalize_linkedin_url(row.get("input_url", "")): row
+        for row in existing_rows
+        if normalize_linkedin_url(row.get("input_url", ""))
+    }
+    completed_urls = {
+        url
+        for url, row in existing_by_url.items()
+        if row.get("enrichlayer_status") != "error"
+    }
+    candidates: list[tuple[int, dict[str, str], str]] = []
+    for index, row in enumerate(linkedin_rows):
+        linkedin_url = normalize_linkedin_url(row.get("linkedin_url", ""))
+        if not linkedin_url or not is_linkedin_profile_url(linkedin_url):
+            continue
+        if not refresh and linkedin_url in completed_urls:
+            continue
+        candidates.append((index, row, linkedin_url))
+    selected = candidates[:limit] if limit > 0 else candidates
+
+    client = EnrichLayerClient()
+    attempted = 0
+    fetched = 0
+    errors = 0
+    stopped_reason = "nothing_to_do" if not selected else "limit_reached"
+    last_row: dict[str, str] | None = None
+    last_seed_index: int | None = None
+
+    for selected_index, (seed_index, row, linkedin_url) in enumerate(selected, start=1):
+        print(f"Enrichlayer {selected_index}/{len(selected)}: {linkedin_url}", flush=True)
+        fetched_at = utc_now_iso()
+        normalized: dict[str, str] | None = None
+        for attempt in range(max_retries + 1):
+            try:
+                record = client.fetch_profile(linkedin_url)
+                normalized = normalize_enrichlayer_record(record, linkedin_url, fetched_at=fetched_at)
+                fetched += 1
+                break
+            except EnrichLayerError as error:
+                if error.status_code == 429 and attempt < max_retries:
+                    print(f"Enrichlayer rate limited; sleeping {retry_after_sec:g}s before retry", flush=True)
+                    time.sleep(retry_after_sec)
+                    continue
+                normalized = normalize_enrichlayer_record({}, linkedin_url, fetched_at=fetched_at, error=str(error))
+                errors += 1
+                if error.status_code in {401, 402, 403, 429}:
+                    stopped_reason = f"api_error_{error.status_code}"
+                break
+        if normalized is None:
+            normalized = normalize_enrichlayer_record({}, linkedin_url, fetched_at=fetched_at, error="unknown_error")
+            errors += 1
+        existing_by_url[linkedin_url] = normalized
+        attempted += 1
+        last_row = row
+        last_seed_index = seed_index
+        _write_csv(normalized_path, list(existing_by_url.values()), ENRICHLAYER_FIELDNAMES)
+
+        next_item = selected[selected_index] if selected_index < len(selected) else None
+        progress = {
+            "attempted_this_run": attempted,
+            "fetched_this_run": fetched,
+            "errors_this_run": errors,
+            "requested_limit": limit,
+            "refresh": refresh,
+            "candidate_count_before_limit": len(candidates),
+            "selected_count": len(selected),
+            "last_seed_row_number": (last_seed_index + 2) if last_seed_index is not None else "",
+            "last_scholar_id": last_row.get("scholar_id", "") if last_row else "",
+            "last_scholar_name": last_row.get("scholar_name", "") if last_row else "",
+            "last_linkedin_url": linkedin_url,
+            "next_seed_row_number": (next_item[0] + 2) if next_item else "",
+            "next_scholar_id": next_item[1].get("scholar_id", "") if next_item else "",
+            "next_scholar_name": next_item[1].get("scholar_name", "") if next_item else "",
+            "next_linkedin_url": next_item[2] if next_item else "",
+            "stopped_reason": stopped_reason if stopped_reason.startswith("api_error_") else "",
+            "updated_at": utc_now_iso(),
+            "resume_command": _enrichlayer_resume_command(limit, fetched, delay_sec, max_retries, retry_after_sec),
+        }
+        _write_enrichlayer_progress(progress_path, progress)
+        if stopped_reason.startswith("api_error_"):
+            break
+        if delay_sec > 0 and selected_index < len(selected):
+            time.sleep(delay_sec)
+    else:
+        if selected and limit > 0 and len(candidates) > len(selected):
+            stopped_reason = "limit_reached"
+        elif selected:
+            stopped_reason = "completed_all_pending"
+
+    if stopped_reason.startswith("api_error_") and last_seed_index is not None and last_row:
+        next_candidate = (
+            last_seed_index,
+            last_row,
+            normalize_linkedin_url(last_row.get("linkedin_url", "")),
+        )
+    else:
+        next_candidate = selected[attempted] if attempted < len(selected) else None
+    progress = {
+        "attempted_this_run": attempted,
+        "fetched_this_run": fetched,
+        "errors_this_run": errors,
+        "requested_limit": limit,
+        "refresh": refresh,
+        "candidate_count_before_limit": len(candidates),
+        "selected_count": len(selected),
+        "last_seed_row_number": (last_seed_index + 2) if last_seed_index is not None else "",
+        "last_scholar_id": last_row.get("scholar_id", "") if last_row else "",
+        "last_scholar_name": last_row.get("scholar_name", "") if last_row else "",
+        "last_linkedin_url": last_row.get("linkedin_url", "") if last_row else "",
+        "next_seed_row_number": (next_candidate[0] + 2) if next_candidate else "",
+        "next_scholar_id": next_candidate[1].get("scholar_id", "") if next_candidate else "",
+        "next_scholar_name": next_candidate[1].get("scholar_name", "") if next_candidate else "",
+        "next_linkedin_url": next_candidate[2] if next_candidate else "",
+        "stopped_reason": stopped_reason,
+        "updated_at": utc_now_iso(),
+        "resume_command": _enrichlayer_resume_command(limit, fetched, delay_sec, max_retries, retry_after_sec),
+    }
+    _write_enrichlayer_progress(progress_path, progress)
+    return {
+        "pending_before_limit": len(candidates),
+        "attempted": attempted,
+        "fetched": fetched,
+        "errors": errors,
+        "stopped_reason": stopped_reason,
+        "normalized": str(normalized_path),
+        "progress": str(progress_path),
+    }
+
+
 def build_processed_profiles(seed_dir: Path = SEED_DIR, processed_path: Path | None = None, use_llm: bool = False) -> Path:
     ensure_data_dirs()
     scholars = _read_csv(seed_dir / "scholars.csv")
     linkedin_rows = {row["scholar_id"]: row for row in _read_csv(seed_dir / "linkedin_profiles.csv")}
     seed_observations = {row["scholar_id"]: row for row in _read_csv(seed_dir / "employment_observations.csv")}
     brightdata_by_url = {row["input_url"]: row for row in _read_csv(AUDIT_DIR / "brightdata_profile_decisions.csv")}
+    enrichlayer_by_url = {
+        row["input_url"]: row
+        for row in _read_csv(AUDIT_DIR / "enrichlayer_profile_decisions.csv")
+        if row.get("enrichlayer_status") == "ok"
+    }
     out = processed_path or PROCESSED_DIR / "scholar_information.csv"
 
     rows: list[dict[str, str]] = []
@@ -413,13 +586,23 @@ def build_processed_profiles(seed_dir: Path = SEED_DIR, processed_path: Path | N
         linkedin_url = linkedin.get("linkedin_url") or "N/A"
         seed_observation = seed_observations.get(scholar_id, {})
         bright = brightdata_by_url.get(linkedin_url, {})
-        current_company = _blank_if_na(bright.get("current_company_name") or seed_observation.get("current_company", ""))
-        current_title = _blank_if_na(bright.get("position") or seed_observation.get("current_title", ""))
+        enrich = enrichlayer_by_url.get(linkedin_url, {})
+        current_company = _blank_if_na(
+            enrich.get("enrichlayer_current_company")
+            or bright.get("current_company_name")
+            or seed_observation.get("current_company", "")
+        )
+        current_title = _blank_if_na(
+            enrich.get("enrichlayer_current_job_title")
+            or bright.get("position")
+            or seed_observation.get("current_title", "")
+        )
         profile_location = _blank_if_na(
-            bright.get("profile_location") or bright.get("location") or bright.get("profile_city") or bright.get("city")
+            enrich.get("enrichlayer_profile_location")
+            or bright.get("profile_location") or bright.get("location") or bright.get("profile_city") or bright.get("city")
             or seed_observation.get("current_location", "")
         )
-        job_location = _blank_if_na(bright.get("job_location"))
+        job_location = _blank_if_na(enrich.get("enrichlayer_current_job_location") or bright.get("job_location"))
         company = enrich_company(current_company, current_title, role_context=f"{current_title} {job_location}", use_llm=use_llm)
         rows.append(
             {
@@ -432,9 +615,15 @@ def build_processed_profiles(seed_dir: Path = SEED_DIR, processed_path: Path | N
                 "Current Job Title": current_title,
                 "Current Company": current_company,
                 "Company Description": company.company_description,
+                "Experience Count": enrich.get("enrichlayer_experience_count", ""),
+                "Education Count": enrich.get("enrichlayer_education_count", ""),
+                "Work History": enrich.get("enrichlayer_experience_json", ""),
+                "Education": enrich.get("enrichlayer_education_json", ""),
+                "Enrichment Source": "enrichlayer" if enrich else "brightdata" if bright else "",
+                "Enrichment Status": enrich.get("enrichlayer_status", "") or bright.get("record_status", ""),
                 "Country": scholar.get("country", ""),
-                "Confidence": "brightdata" if bright else seed_observation.get("confidence", ""),
-                "Last Updated": bright.get("fetched_at") or seed_observation.get("observed_at", ""),
+                "Confidence": "enrichlayer" if enrich else "brightdata" if bright else seed_observation.get("confidence", ""),
+                "Last Updated": enrich.get("enrichlayer_fetched_at") or bright.get("fetched_at") or seed_observation.get("observed_at", ""),
                 "Source URLs": linkedin_url if linkedin_url != "N/A" else scholar.get("official_url", ""),
             }
         )
@@ -449,6 +638,12 @@ def build_processed_profiles(seed_dir: Path = SEED_DIR, processed_path: Path | N
         "Current Job Title",
         "Current Company",
         "Company Description",
+        "Experience Count",
+        "Education Count",
+        "Work History",
+        "Education",
+        "Enrichment Source",
+        "Enrichment Status",
         "Country",
         "Confidence",
         "Last Updated",

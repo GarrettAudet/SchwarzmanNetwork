@@ -9,6 +9,7 @@ from .pipeline import (
     build_db_and_exports,
     build_processed_profiles,
     enrich_brightdata,
+    enrich_enrichlayer,
     find_missing_linkedin,
     fetch_official,
     import_workbook,
@@ -54,6 +55,14 @@ def main(argv: list[str] | None = None) -> None:
     bright_cmd.add_argument("--limit", default=0, type=int)
     bright_cmd.add_argument("--refresh", action="store_true")
 
+    enrichlayer_cmd = sub.add_parser("enrich-enrichlayer", help="Enrich LinkedIn URLs through Enrichlayer.")
+    enrichlayer_cmd.add_argument("--seed-dir", default=SEED_DIR, type=Path)
+    enrichlayer_cmd.add_argument("--limit", default=200, type=int)
+    enrichlayer_cmd.add_argument("--refresh", action="store_true")
+    enrichlayer_cmd.add_argument("--delay-sec", default=0.0, type=float)
+    enrichlayer_cmd.add_argument("--max-retries", default=1, type=int)
+    enrichlayer_cmd.add_argument("--retry-after-sec", default=65.0, type=float)
+
     processed_cmd = sub.add_parser("build-processed", help="Build the flat scholar information CSV.")
     processed_cmd.add_argument("--seed-dir", default=SEED_DIR, type=Path)
     processed_cmd.add_argument("--output", default=PROCESSED_DIR / "scholar_information.csv", type=Path)
@@ -75,6 +84,10 @@ def main(argv: list[str] | None = None) -> None:
     )
     refresh_cmd.add_argument("--brightdata", action="store_true")
     refresh_cmd.add_argument("--brightdata-limit", default=0, type=int)
+    refresh_cmd.add_argument("--enrichlayer", action="store_true")
+    refresh_cmd.add_argument("--enrichlayer-limit", default=200, type=int)
+    refresh_cmd.add_argument("--enrichlayer-refresh", action="store_true")
+    refresh_cmd.add_argument("--enrichlayer-delay-sec", default=0.0, type=float)
     refresh_cmd.add_argument("--use-llm", action="store_true")
 
     args = parser.parse_args(argv)
@@ -90,6 +103,17 @@ def main(argv: list[str] | None = None) -> None:
         _print(find_missing_linkedin(args.seed_dir, args.limit, providers, matching_mode=args.matching_mode))
     elif args.command == "enrich-brightdata":
         _print(enrich_brightdata(args.seed_dir, args.batch_size, args.limit, args.refresh))
+    elif args.command == "enrich-enrichlayer":
+        _print(
+            enrich_enrichlayer(
+                args.seed_dir,
+                args.limit,
+                args.refresh,
+                args.delay_sec,
+                args.max_retries,
+                args.retry_after_sec,
+            )
+        )
     elif args.command == "build-processed":
         _print({"processed": str(build_processed_profiles(args.seed_dir, args.output, use_llm=args.use_llm))})
     elif args.command == "build-db":
@@ -106,6 +130,12 @@ def main(argv: list[str] | None = None) -> None:
             result["find_linkedin"] = find_missing_linkedin(matching_mode=args.linkedin_matching_mode)
         if args.brightdata:
             result["brightdata"] = enrich_brightdata(limit=args.brightdata_limit)
+        if args.enrichlayer:
+            result["enrichlayer"] = enrich_enrichlayer(
+                limit=args.enrichlayer_limit,
+                refresh=args.enrichlayer_refresh,
+                delay_sec=args.enrichlayer_delay_sec,
+            )
         processed = build_processed_profiles(use_llm=args.use_llm)
         result["processed"] = str(processed)
         result["exports"] = build_db_and_exports(processed)
