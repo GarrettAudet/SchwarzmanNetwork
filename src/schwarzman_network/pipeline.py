@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import tempfile
 import time
 from pathlib import Path
 
@@ -31,10 +32,35 @@ from .storage.export_public import export_public
 
 def _write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
-        writer.writeheader()
-        writer.writerows(rows)
+    tmp_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            newline="",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            tmp_path = Path(handle.name)
+            writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
+            writer.writeheader()
+            writer.writerows(rows)
+        for attempt in range(8):
+            try:
+                tmp_path.replace(path)
+                break
+            except PermissionError:
+                if attempt == 7:
+                    raise
+                time.sleep(0.5 * (attempt + 1))
+    finally:
+        if tmp_path and tmp_path.exists():
+            try:
+                tmp_path.unlink()
+            except OSError:
+                pass
     return path
 
 
@@ -481,6 +507,8 @@ def enrich_enrichlayer(
                     time.sleep(retry_after_sec)
                     continue
                 normalized = normalize_enrichlayer_record({}, linkedin_url, fetched_at=fetched_at, error=str(error))
+                if error.status_code == 404:
+                    normalized["enrichlayer_status"] = "not_found"
                 errors += 1
                 if error.status_code in {401, 402, 403, 429}:
                     stopped_reason = f"api_error_{error.status_code}"
