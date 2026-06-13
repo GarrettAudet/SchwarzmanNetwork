@@ -34,13 +34,14 @@ Country, Confidence, Last Updated, Source URLs
 5. Search configured providers for missing LinkedIn URLs.
 6. Ask an LLM to adjudicate the search-result candidates using scholar context.
 7. Promote only high-confidence LinkedIn `/in/` URLs selected from the candidate list.
-8. Enrich verified LinkedIn profiles in bulk with Bright Data.
-9. Optionally enrich verified LinkedIn profiles one-by-one with Enrichlayer for work history, education, and job-location fields.
-10. Classify companies into one-word industries.
-11. Attach one-sentence company descriptions when evidence is available.
-12. Build the processed scholar CSV.
-13. Build SQLite and public CSV/JSON exports.
-14. Commit refreshed public artifacts.
+8. Review LinkedIn seed quality: normalize pasted URLs, clear duplicate URL assignments, and clear obvious identity mismatches.
+9. Enrich verified LinkedIn profiles in bulk with Bright Data.
+10. Optionally enrich verified LinkedIn profiles one-by-one with Enrichlayer for work history, education, and job-location fields.
+11. Classify companies into one-word industries.
+12. Attach one-sentence company descriptions when evidence is available.
+13. Build the processed scholar CSV.
+14. Build SQLite and public CSV/JSON exports.
+15. Commit refreshed public artifacts.
 
 ## Local Commands
 
@@ -62,6 +63,7 @@ Run yearly-style refresh steps:
 python -m schwarzman_network.cli fetch-official
 python -m schwarzman_network.cli sync-official
 python -m schwarzman_network.cli find-linkedin --matching-mode llm
+python -m schwarzman_network.cli review-linkedin-quality
 python -m schwarzman_network.cli enrich-brightdata --refresh
 python -m schwarzman_network.cli enrich-enrichlayer --limit 200 --delay-sec 10 --max-retries 1 --retry-after-sec 300
 python -m schwarzman_network.cli refresh
@@ -140,3 +142,8 @@ is the profile city/location. `Job Location` is populated only from job-derived
 fields such as Enrichlayer `experiences[].location`, Bright Data
 `experience[].location`, nested Bright Data `experience[].positions[].location`,
 or `current_company.location`; it does not fall back to profile location.
+
+`review-linkedin-quality` is a conservative paid-enrichment guardrail. It
+normalizes common pasted LinkedIn labels such as ` (LinkedIn)`, writes duplicate
+and mismatch decisions to `data/audit/linkedin_duplicate_review.csv`, and marks
+unsafe mappings as `N/A` so the search plus LLM step can rediscover them later.

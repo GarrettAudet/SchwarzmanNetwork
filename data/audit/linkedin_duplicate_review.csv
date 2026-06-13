@@ -1,0 +1,58 @@
+reviewed_at,canonical_url,profile_name,scholar_id,scholar_name,cohort,name_match_score,action,reason
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/abdelrahman-ayman,Abdelrahman Ayman,c4-abdelrahman-mohamed,Abdelrahman Mohamed,C4,0.500,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/abdelrahman-ayman,Abdelrahman Ayman,c4-abdijabar-mohamed,Abdijabar Mohamed,C4,0.000,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/amina-shafeek-horton-1514141b6,Amina Shafeek-Horton,c7-amina-ahmad,Amina Ahmad,C7,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/amina-shafeek-horton-1514141b6,Amina Shafeek-Horton,c9-amina-shafeek-horton,Amina Shafeek-Horton,C9,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/charles-krumholz-781907a3,Charles Krumholz,c3-benjamin-chi,Benjamin Chi,C3,0.000,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/charles-krumholz-781907a3,Charles Krumholz,c3-charles-krumholz,Charles Krumholz,C3,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/chen-yl,Yilin Chen,c5-yicheng-li,Yicheng Li,C5,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/chen-yl,Yilin Chen,c10-yilin-chen,Yilin Chen,C10,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/clairemaicolberg,Claire Mai Colberg (高岚),c3-bor-hung-chong,Bor Hung Chong,C3,0.000,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/clairemaicolberg,Claire Mai Colberg (高岚),c3-claire-colberg,Claire Colberg,C3,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/clarinda-blais,Clarinda Blais,c3-bozhong-xue,Bozhong XUE,C3,0.000,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/clarinda-blais,Clarinda Blais,c3-clarinda-blais,Clarinda Blais,C3,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/colin-lopez-400b70153,Colin Lopez,c3-bradley-jardine,Bradley Jardine,C3,0.000,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/colin-lopez-400b70153,Colin Lopez,c3-colin-lopez,Colin Lopez,C3,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/cqyuan,Chris Yuan,c3-benjamin-hook,Benjamin Hook,C3,0.000,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/cqyuan,Chris Yuan,c3-christopher-yuan,Christopher Yuan,C3,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/cristina-paraj%C3%B3n-8a2ab1146,Cristina Parajón,c3-brett-daley,Brett Daley,C3,0.000,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/cristina-paraj%C3%B3n-8a2ab1146,Cristina Parajón,c3-cristina-parajon,Cristina Parajon,C3,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/fz-jiang,Fangzhou Jiang,c4-fangzhou-xu,Fangzhou Xu,C4,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/fz-jiang,Fangzhou Jiang,c5-fangzhou-jiang,Fangzhou Jiang,C5,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/gabriellebroberts,Gabrielle Roberts,c2-greer-roberts,Greer Roberts,C2,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/gabriellebroberts,Gabrielle Roberts,c5-gabrielle-roberts,Gabrielle Roberts,C5,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/isabellalichen,Isabella L.,c4-isabella-colocci,Isabella Colocci,C4,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/isabellalichen,Isabella L.,c7-isabella-lichen,Isabella Lichen,C7,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/jenna-c-yuan,Jenna Yuan,c8-qiyuan-shengni,Qiyuan Shengni,C8,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/jenna-c-yuan,Jenna Yuan,c9-jenna-yuan,Jenna Yuan,C9,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/jessiejxu,Jessie Xu 徐佳辰,c7-jessie-xu,Jessie Xu,C7,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/jessiejxu,Jessie Xu 徐佳辰,c9-jia-xu,Jia Xu,C9,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/jonathan-zhang-209b05166,Jonathan Zhang,c5-junan-zhang,Junan Zhang,C5,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/jonathan-zhang-209b05166,Jonathan Zhang,c8-jonathan-zhang,Jonathan Zhang,C8,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/jordanharb,Jordan Harb,c4-william-haynes,William Haynes,C4,0.000,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/jordanharb,Jordan Harb,c10-jordan-harb,Jordan Harb,C10,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/lucyxinyuzhu,Lucy Xinyu Zhu,c6-xinlei-zhu,Xinlei Zhu,C6,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/lucyxinyuzhu,Lucy Xinyu Zhu,c9-lucy-xinyu-zhu,Lucy Xinyu Zhu,C9,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/shwanimmo,Mohammed M. O.,c2-mohammed-omar,Mohammed Omar,C2,0.500,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/shwanimmo,Mohammed M. O.,c11-mohammed-mahdi-obaid,Mohammed Mahdi Obaid,C11,0.333,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/stephanie-lin-harvard,Stephanie Lin,c10-stephanie-lin,Stephanie Lin,C10,1.000,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/stephanie-lin-harvard,Stephanie Lin,c11-stephanie-li,Stephanie Li,C11,1.000,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/sunjingwen,Jingwen Sun,c2-jingwen-sun,Jingwen Sun,C2,1.000,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/sunjingwen,Jingwen Sun,c8-jing-sun,Jing Sun,C8,1.000,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/william-w-wang,William W.,c7-william-ge,William Ge,C7,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/william-w-wang,William W.,c7-william-wang,William Wang,C7,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/z-yixuan,Yixuan Zhang,c11-yixuan-guo,Yixuan Guo,C11,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/z-yixuan,Yixuan Zhang,c11-yixuan-zhang,Yixuan Zhang,C11,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/zhengfei111,Zhengfei Zhang,c3-hanfei-zhang,Hanfei Zhang,C3,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/zhengfei111,Zhengfei Zhang,c9-zhengfei-zhang,Zhengfei Zhang,C9,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/zhengyuan-liu-851797209,Zhengyuan Liu,c6-zhengyuan-liu,Zhengyuan Liu,C6,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/zhengyuan-liu-851797209,Zhengyuan Liu,c9-zhiyan-liu,Zhiyan Liu,C9,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/zhou-yu-432055199,ZHOU YU,c4-zhou-yu,Zhou Yu,C4,1.000,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/zhou-yu-432055199,ZHOU YU,c7-zhou-yu,Zhou Yu,C7,1.000,cleared_duplicate_url,ambiguous_duplicate_url
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/zihaoz,Zihao Zhang,c2-zihao-zhang,Zihao ZHANG,C2,1.000,kept_unique_profile_name_match,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/zihaoz,Zihao Zhang,c6-zihao-mei,Zihao Mei,C6,0.500,cleared_duplicate_url,profile_name_match
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/arjunrosskapur,Arjun R. Kapur,c3-anh-vu-vincent-nguyen,Anh Vu Vincent Nguyen,C3,0.000,cleared_identity_mismatch,profile_or_slug_name_mismatch
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/benjamin-chi-875882121,,c3-anthony-wang,Anthony Wang,C3,0.000,cleared_identity_mismatch,profile_or_slug_name_mismatch
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/brettdaley,Brett Daley,c3-ashish-inani,Ashish Inani,C3,0.000,cleared_identity_mismatch,profile_or_slug_name_mismatch
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/eli-m-18085617a,Eli M.,c6-eri-morimoto,Eri Morimoto,C6,0.000,cleared_identity_mismatch,profile_or_slug_name_mismatch
+2026-06-13T06:55:23Z,https://www.linkedin.com/in/valentina-xu,Valentina Xu,c9-aya-al-shakarchi,Aya Al-Shakarchi,C9,0.000,cleared_identity_mismatch,profile_or_slug_name_mismatch

@@ -19,6 +19,7 @@ from .enrichment.enrichlayer import (
 from .enrichment.linkedin_api import BrightDataLinkedInClient
 from .enrichment.schema import normalize_brightdata_record
 from .matching.adjudicator import candidate_evidence_json, choose_linkedin_candidate
+from .matching.linkedin_quality import review_linkedin_quality
 from .matching.merge import append_new_official_scholars
 from .models import EmploymentObservation, LinkedInProfile, Scholar, clean_text, scholar_key, utc_now_iso
 from .official.cohort import graduation_year_from_cohort
@@ -67,6 +68,10 @@ def _write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str])
 def _blank_if_na(value: object) -> str:
     text = clean_text(value)
     return "" if text.lower() in {"n/a", "na", "none", "null", "-"} else text
+
+
+def _console_safe(value: object) -> str:
+    return clean_text(value).encode("ascii", "backslashreplace").decode("ascii")
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -492,7 +497,7 @@ def enrich_enrichlayer(
     last_seed_index: int | None = None
 
     for selected_index, (seed_index, row, linkedin_url) in enumerate(selected, start=1):
-        print(f"Enrichlayer {selected_index}/{len(selected)}: {linkedin_url}", flush=True)
+        print(f"Enrichlayer {selected_index}/{len(selected)}: {_console_safe(linkedin_url)}", flush=True)
         fetched_at = utc_now_iso()
         normalized: dict[str, str] | None = None
         for attempt in range(max_retries + 1):

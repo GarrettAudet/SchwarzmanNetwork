@@ -1,21 +1,38 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 
 from ..models import clean_text
 from ..search.normalize import is_linkedin_profile_url
 
 
 def name_match_score(expected_name: str, observed_text: str) -> float:
+    expected_name = unicodedata.normalize("NFKD", clean_text(expected_name)).encode("ascii", "ignore").decode("ascii")
+    observed_text = unicodedata.normalize("NFKD", clean_text(observed_text)).encode("ascii", "ignore").decode("ascii")
     tokens = [
         token
-        for token in re.sub(r"[^a-z0-9\s-]", " ", clean_text(expected_name).lower()).split()
+        for token in re.sub(r"[^a-z0-9\s-]", " ", expected_name.lower()).split()
         if len(token) > 1
     ]
-    haystack = clean_text(observed_text).lower()
+    haystack = observed_text.lower()
+    haystack_tokens = [
+        token
+        for token in re.sub(r"[^a-z0-9\s-]", " ", haystack).split()
+        if len(token) > 1
+    ]
     if not tokens or not haystack:
         return 0.0
-    return sum(1 for token in tokens if token in haystack) / len(tokens)
+
+    def token_matches(token: str) -> bool:
+        if token in haystack:
+            return True
+        return any(
+            len(observed) >= 4 and (token.startswith(observed) or token.endswith(observed))
+            for observed in haystack_tokens
+        )
+
+    return sum(1 for token in tokens if token_matches(token)) / len(tokens)
 
 
 def validate_linkedin_candidate(expected_name: str, url: str, title: str = "", snippet: str = "") -> dict[str, object]:

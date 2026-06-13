@@ -13,6 +13,7 @@ from .pipeline import (
     find_missing_linkedin,
     fetch_official,
     import_workbook,
+    review_linkedin_quality,
     sync_official,
 )
 from .matching.trials import run_linkedin_matching_trials
@@ -73,6 +74,9 @@ def main(argv: list[str] | None = None) -> None:
 
     sub.add_parser("trial-linkedin-matching", help="Run controlled trials comparing heuristic and LLM LinkedIn matching.")
 
+    quality_cmd = sub.add_parser("review-linkedin-quality", help="Review duplicate LinkedIn URLs and clear ambiguous mappings.")
+    quality_cmd.add_argument("--seed-dir", default=SEED_DIR, type=Path)
+
     refresh_cmd = sub.add_parser("refresh", help="Run the yearly pipeline.")
     refresh_cmd.add_argument("--fetch-official", action="store_true")
     refresh_cmd.add_argument("--sync-official", action="store_true")
@@ -120,6 +124,8 @@ def main(argv: list[str] | None = None) -> None:
         _print(build_db_and_exports(args.processed))
     elif args.command == "trial-linkedin-matching":
         _print(run_linkedin_matching_trials())
+    elif args.command == "review-linkedin-quality":
+        _print(review_linkedin_quality(args.seed_dir))
     elif args.command == "refresh":
         result: dict[str, object] = {}
         if args.fetch_official:
@@ -128,6 +134,7 @@ def main(argv: list[str] | None = None) -> None:
             result["sync"] = sync_official()
         if args.find_linkedin:
             result["find_linkedin"] = find_missing_linkedin(matching_mode=args.linkedin_matching_mode)
+        result["linkedin_quality"] = review_linkedin_quality()
         if args.brightdata:
             result["brightdata"] = enrich_brightdata(limit=args.brightdata_limit)
         if args.enrichlayer:

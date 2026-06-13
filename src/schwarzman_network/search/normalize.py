@@ -11,6 +11,7 @@ NA_VALUES = {"", "n/a", "na", "none", "null", "-"}
 
 def normalize_linkedin_url(url: str) -> str:
     text = clean_text(url)
+    text = re.sub(r"\s+\(LinkedIn\)\s*$", "", text, flags=re.I)
     if text.lower() in NA_VALUES:
         return "N/A"
     if not text:
