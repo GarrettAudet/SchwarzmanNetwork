@@ -13,7 +13,7 @@ publishes a SQLite database plus CSV/JSON exports.
 - `data/public/schwarzman_network.sqlite` - queryable SQLite database.
 - `data/public/scholars.csv` - flat public scholar export.
 - `data/public/scholars.json` - JSON version of the scholar export.
-- `data/public/enriched_profiles.csv` - Enrichlayer-centered export with raw profile fields plus country and industry.
+- `data/public/enriched_profiles.csv` - Enrichlayer-centered export with raw profile fields plus cohort, country, and industry.
 - `data/public/companies.csv` - company-level industry and description export.
 - `data/public/dataset_summary.json` - coverage summary.
 
